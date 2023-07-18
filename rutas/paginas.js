@@ -70,17 +70,20 @@ rutas.post("/validar", (req, res) => {
   const usuario = req.body.usuario;
   const contraseña = req.body.password;
 
-  let error;
-  Usuario.findAll({where: {nombre_usu: usuario,contra_usu: contraseña,}})
-  .then(()=>{
-    res.render("inicio");
-  })
-  .catch((err)=>{
-    error = "Contraseña incorrecta" + err;
-    console.log(error);
-    res.redirect("/")
-  });
+  Usuario.findAll({ where: { usuario_usu: usuario, contra_usu: contraseña } })
+    .then((inicioS) => {
+      if (inicioS.length > 0) {
+        req.session.usuario = usuario;
+        res.redirect("inicio");
+      } else {
+        const error = "Nombre de usuario o contraseña incorrecta";
+        console.log(error);
+        res.send(`<script>alert("${error}"); window.location.href="/";</script>`);
+      }
+    })
 });
+
+
 
 // Ruta para REGISTRAR USUARIO -----------------------------------------------------------------
 rutas.post("/registrarUsuario", (req, res) => {
