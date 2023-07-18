@@ -1,0 +1,23 @@
+<%- include("templates/encabezado.ejs")%>
+<div class="barraMenu">
+    <div class="logoSec">
+        <img src="/GreenWaste/css/media/Recurso 1.png" alt="Logo" title="Logo de GreenWaste"/>
+    </div>
+</div>
+
+<div id="formulario-Inicio-Sesion" class="formulario">
+    <form action="/validar" method="post" id="formularioIniciarSesion">
+        <div>
+            <input type="text" name="usuario" id="usuario" placeholder="Usuario" autofocus required>
+            <span id="mensajeUsuario"></span>
+        </div>
+        <div>
+            <input type="password" name="password" id="password" placeholder="Contraseña" required>
+            <span id="mensajePassword"></span>
+        </div>
+        <div>
+            <button type="submit" id="botonInicioSesion">Iniciar sesión</button>
+        </div>
+    </form>
+    <div id="botonRegistrar"><a href="crearSesion">Registrarse</a></div>
+</div>  

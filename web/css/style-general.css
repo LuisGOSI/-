@@ -1,0 +1,71 @@
+
+.container-med,
+.container-toxic {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.info-container-med,
+.info-container-toxic {
+  width: 50%;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+#map {
+  width: 50%;
+  height: 400px;
+}
+
+h1 {
+  text-align: center;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+.marker {
+  color: red;
+  font-weight: bold;
+}
+
+.container-toxic,
+.container-med {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.info-container-med,
+.info-container-toxic {
+  flex-basis: 55%;
+  padding: 20px;
+  background-color: #c6e8ad;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  border-radius: 50px;
+  font-family: "Arial Rounded", Arial, sans-serif;
+}
+
+.info-container-med,
+.info-container-toxic {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}
+
+.img-toxic,
+.img-med {
+  flex-basis: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-toxic img,
+.img-med img {
+  max-width: 100%;
+  height: auto;
+}
+
+

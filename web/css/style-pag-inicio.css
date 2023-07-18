@@ -1,0 +1,155 @@
+/* Container */
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 170px;
+  padding: 20px;
+}
+
+.Org,
+.Ing,
+.Rec,
+.Med {
+  border: none;
+  border-radius: 15px;
+  background: none;
+}
+
+.Org :hover,
+.Ing :hover,
+.Rec :hover,
+.Med :hover {
+  transform: scale(1.12);
+  z-index: 1;
+}
+
+.Organicos img,
+.Inorganicos img,
+.Biohazard img,
+.Medicamentos img {
+  width: 155px;
+  height: 155px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.8);
+}
+
+.descResi {
+  color: white;
+  text-shadow: 1px 1px 1.5px black;
+  font-size: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Contenido */
+.container-sugerencia {
+  width: 100%;
+  height: 320px;
+  background-color: rgb(204, 240, 190);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-sugerencia-imagen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.card {
+  width: 27rem;
+  height: 15rem;
+  border-radius: 30px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.card + .card {
+  margin-left: 2%;
+}
+
+.card:hover {
+  transform: scale(1.12);
+  z-index: 1;
+}
+
+.container-sugerencia-imagen .card img {
+  width: 100%;
+  height: 100%;
+}
+
+.container-sugerencia-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  pointer-events: none;
+}
+
+.card:hover .container-sugerencia-overlay {
+  opacity: 1;
+}
+
+.tituloResiduos {
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  font-size: 50px;
+}
+
+/*  Imagen de fondo en el menu  --------------------------------------------------------------*/
+
+#container-infoInicio {
+  height: 600px;
+  display: block;
+  position: relative;
+  text-align: center;
+  background-color: black;
+  margin-bottom: 50px;
+}
+
+#fondoInicio {
+  height: 600px;
+  width: 100%;
+  opacity: 70%;
+  display: block;
+}
+
+#infoInicio-titulo {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  border: #51a736;
+  text-shadow: 1px 1px 2px black;
+  font-size: xx-large;
+}
+
+#infoInicio-texto {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#infoInicio-texto p {
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px 2px black;
+  font-size: x-large;
+}

@@ -1,0 +1,77 @@
+#container-infoTox {
+    height: 600px;
+    display: block;
+    position: relative;
+    text-align: center;
+    background-color: black;
+}
+
+#fondoTox {
+    height: 600px;
+    width: 100%;
+    opacity: 70%;
+    display: block;
+}
+
+#info-tituloTox {
+    position: absolute;
+    top: 45%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    color: white;
+    border: #51a736;
+    text-shadow: 1px 1px 2px black;
+}
+
+#info-textoTox {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#info-textoTox p {
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 2px black;
+}
+
+.contenidoTox {
+    margin-bottom: 100px;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.recomendTox {
+    height: 500px;
+    width: 250px ;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.2);
+    margin-right: 20px;
+    text-align: left;
+}
+
+#mapaTox {
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.2);
+    margin-left: 20px;
+    height: 500px;
+    width: 800px;
+    border-radius: 20px;
+}
+
+#subtituloTox {
+    text-align: center;
+    margin: 15px;
+    margin-top: 30px;
+}
+
+#textTox {
+    margin: 15px;
+}
+
+.listTox {
+    margin-bottom: 5px;
+}

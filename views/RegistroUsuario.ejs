@@ -1,0 +1,29 @@
+<%- include("templates/encabezado.ejs")%>
+    <div class="barraMenu">
+        <div class="logoSec">
+            <img src="/GreenWaste/css/media/Recurso 1.png" alt="Logo" title="Logo de GreenWaste" />
+        </div>
+    </div>
+    <br>
+    <br>
+    <form action="/registrarUsuario" method="post" id="formularioUsuario">
+        <div class="form__register">
+            <h2>Formulario de Registro</h2>
+            <input class="form__controls" type="text" name="nombre_usu" id="nombre_usu" placeholder="Ingrese su nombre" required autofocus>
+                <span id="errorNombre"></span>
+            <input class="form__controls" type="text" name="ape_usu" id="ape_usu" placeholder="Ingrese su apellido" required>
+                <span id="errorApellido"></span>
+            <input class="form__controls" type="text" name="usuario_usu" id="usuario_usu" placeholder="Ingrese su usuario" required>
+                <span id="errorUsuario"></span>
+            <input class="form__controls" type="text" name="email_usu" id="email_usu" placeholder="Ingrese su correo" required>
+                <span id="errorCorreo"></span>
+            <input class="form__controls" type="password" name="contra_usu" id="contra_usu" placeholder="Ingrese su contraseña" required>
+                <span id="errorContraseña"></span>
+            <button class="form__botons" type="submit" href="registroExitoso">Registrar</button>
+    </form>
+        <!-- <input class="form__controls" type="password" name="confirmar_contraseña" id="confirmar_contraseña" placeholder="Compruebe su contraseña" required>
+            <span id="errorconfirmar"></span> -->
+
+
+    <p><a id="nose" href="/">¿Ya tengo Cuenta?</a></p>
+    </div>

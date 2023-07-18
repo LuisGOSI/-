@@ -1,0 +1,52 @@
+.green-box {
+    width: 550px;
+    height: auto;
+    padding: 20px;
+    background-color: rgb(21, 191, 21);
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+    color: #444;
+    box-sizing: border-box;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    margin-top: 20px    ;
+  } 
+
+    h1.regis {
+    text-align: center;
+    color: #333;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  
+  .regis-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+
+  .regis-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+  }
+
+  .regis-input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .regis-input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }

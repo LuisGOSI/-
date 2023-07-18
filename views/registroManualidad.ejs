@@ -1,0 +1,50 @@
+<%- include("templates/encabezado.ejs")%> <%-
+include("templates/menu-desplegable.ejs")%>
+<div class="green-box">
+    <h1 class="regis">Registro de Manualidad</h1>
+    <form
+      class="regis-form"
+      action="procesar_registro.php"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+
+<div>
+    <input class="regis-input" type="text" id="titulo" name="titulo" required />
+</div>
+
+<div>
+      <input
+        class="regis-input"
+        type="file"
+        id="imagen"
+        name="imagen"
+        required
+        accept="image/*"
+      />
+</div>
+  
+  
+      <div>
+        <label class="regis-label">Descripción:</label>
+        <input class="regis-input" type="text" id="introduccion" name="introduccion" required />
+      </div>
+      <div>
+      <div>
+        <label class="regis-label">Materiales:</label>
+        <input class="regis-input" type="text" id="materiales" name="materiales" required />
+      </div>
+    </div>
+  
+      <div>
+        <label class="regis-label">Pasos para hacerla:</label>
+        <input class="regis-input" type="text" id="pasos" name="pasos" required />
+      </div>
+  
+      <label class="regis-label" for="razon">¿Por qué debería hacerla?:</label>
+      <textarea class="regis-input" id="razon" name="razon" required></textarea>
+  
+      <input class="regis-input" type="submit" value="Registrar" />
+    </form>
+  </div>
+<%- include("templates/pie.ejs")%>

@@ -1,0 +1,213 @@
+/* General */
+body {
+  background-color: rgb(204, 240, 190);
+  margin: 0;
+  padding: 0;
+}
+
+/* Header y logo -----------------------------------------------------------------------------------------*/
+header {
+  background-color: #9ed37f;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  height: 100px;
+  text-align: center;
+  align-items: center;
+  filter: contrast(100%);
+}
+
+.logo img {
+  height: 80%;
+  width: 300px;
+  margin-left: 215px;
+}
+
+/* perfil ------------------------------------------------------------------------------*/
+.profile-container {
+  display: flex;
+  align-items: center;
+}
+
+.profile-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: white ;
+  overflow: hidden;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+}
+
+.profile-name {
+  margin-left: 10px;
+  color:white;
+  font-size: 25px;
+ 
+}
+/* Footer ----------------------------------------------------------------------------------------------------*/
+footer {
+  width: 100%;
+  background: #51a736;
+  color: white;
+}
+
+.container-footer-all {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px;
+}
+
+.container-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.columna1,
+.columna2,
+.columna3 {
+  max-width: 400px;
+}
+
+.columna1 h1,
+.columna2 h1,
+.columna3 h1 {
+  font-size: 22px;
+}
+
+.columna1 p {
+  font-size: 14px;
+  color: white;
+  margin-top: 20px;
+}
+
+.row,
+.row2 {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.row img,
+.row2 img {
+  width: 36px;
+  height: 36px;
+}
+
+.row label,
+.row2 label {
+  margin-top: 10px;
+  margin-left: 20px;
+  color: white;
+}
+
+.container-footer {
+  width: 100%;
+  background: #265910;
+}
+
+.footer {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.footer .information a {
+  text-decoration: none;
+  color: white;
+  border-bottom: none; /* Quita la línea debajo de los enlaces */
+}
+
+.footer .information a:hover {
+  text-decoration: underline;
+}
+.footer .copyright a {
+  text-decoration: none;
+  color: white;
+  border-bottom: none; /* Quita la línea debajo del enlace */
+}
+
+.footer .copyright a:hover {
+  text-decoration: underline;
+}
+
+
+/* Responsive ---------------------------------------------------------------------------------------*/
+@media screen and (max-width: 1100px) {
+  .container-body {
+    flex-wrap: wrap;
+  }
+
+  .columna1 {
+    max-width: 100%;
+  }
+
+  .columna2,
+  .columna3 {
+    margin-top: 40px;
+  }
+}
+
+/* Menu desplegable ------------------------------------------------------------------------- */
+
+.menu-wrapper {
+  position: relative;
+}
+
+#menu {
+  position: absolute;
+  top: -9999px;
+}
+
+.menu-wrapper label {
+  display: inline-block;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  margin-left: 40%;
+  background-image: url('/GreenWaste/css/media/IconoMenu.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.popper-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #4caf50;
+  padding: 10px;
+  width: 200px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.menu-option {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  text-shadow: 1px 1px 2px black;
+}
+
+.menu-option:hover {
+  background-color: #4caf50;
+}
+
+/* Mostrar el menú al hacer clic en el icono */
+#menu:checked ~ .popper-content {
+  display: block;
+}

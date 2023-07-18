@@ -1,0 +1,90 @@
+<%- include("templates/encabezado.ejs")%>
+<%-include("templates/menu-desplegable.ejs")%>
+
+<div id="container-infoInicio">
+  <img src="/GreenWaste/css/media/fondoInicio.jpg" alt="" id="fondoInicio" />
+  <div id="cuadroInicioInfo">
+    <div id="infoInicio-titulo">
+      <h1>GreenWaste</h1>
+    </div>
+    <div id="infoInicio-texto">
+      <p>Un cambio pequeño, un mundo mejor</p>
+    </div>
+  </div>
+</div>
+
+<div>
+  <h1 class="tituloResiduos">Sugerencias de manualidades</h1>
+</div>
+
+<div class="container-sugerencia">
+  <div class="container-sugerencia-imagen">
+    <div class="card">
+      <a href="sillon_palets">
+      <img src="/GreenWaste/css/media/diy_1.jpg" />
+      <div class="container-sugerencia-overlay">
+        <p>Sillon hecho con palets</p>
+      </div>
+     </a>
+    </div>
+    <div class="card">
+      <a href="maceta_botella">
+        <img src="/GreenWaste/css/media/diy_2.jpg" />
+        <div class="container-sugerencia-overlay">
+          <p>Maceta colgante de botella</p>
+        </div>
+      </a>
+    </div>
+    <div class="card" >
+      <a href="centro_botella">
+      <img src="/GreenWaste/css/media/diy_3.jpg" />
+      <div class="container-sugerencia-overlay">
+        <p>Centro de mesa de botella</p>
+      </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div>
+  <h1 class="tituloResiduos">Residuos</h1>
+</div>
+
+<div class="container">
+  <div class="Organicos">
+    <a href="organicos">
+      <button type="submit" class="Org">
+        <img src="/GreenWaste/css/media/organicos.png" alt="Organicos" />
+      </button>
+    </a>
+    <div class="descResi">Organicos</div>
+  </div>
+  <div class="Inorganicos">
+    <a href="inorganicos">
+      <button type="submit" class="Ing">
+        <img src="/GreenWaste/css/media/inorganicos.png" alt="Inorganicos" />
+      </button>
+    </a>
+    <div class="descResi">Inorganicos</div>
+  </div>
+
+  <div class="Biohazard">
+    <a href="residuos_toxicos">
+      <button type="submit" class="Rec">
+        <img src="/GreenWaste/css/media/peligrosos.png" />
+      </button>
+    </a>
+    <div class="descResi">Peligrosos</div>
+  </div>
+
+  <div class="Medicamentos">
+    <a href="residuos_medicos">
+      <button type="submit" class="Med">
+        <img src="/GreenWaste/css/media/medicos.png" />
+      </button>
+    </a>
+    <div class="descResi">Medicos</div>
+  </div>
+</div>
+
+<%- include("templates/pie.ejs")%>

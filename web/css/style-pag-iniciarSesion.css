@@ -1,0 +1,100 @@
+.barraMenu {
+  background-color: #9ed37f;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoSec {
+  display: flex;
+  height: 100px;
+  text-align: center;
+  align-items: center;
+  filter: contrast(100%);
+}
+
+.logoSec img {
+  height: 100%;
+} 
+  
+.formulario {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 250px;
+  padding: 20px;
+  background-color: #4caf50;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+  color: #444;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.formulario form {
+  margin-bottom: 20px;
+}
+
+.formulario input {
+  width: 100%;
+  height: 30px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  border-bottom: 1px solid #abdaaf;
+  outline: none;
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+
+.formulario button {
+  width: 100%;
+  height: 50px;
+  background-color: #32AA15;
+  color: #fff;
+  border: none; 
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.formulario button:hover {
+  background-color: green;
+}
+
+.formulario span {
+  color: red;
+}
+
+#botonRegistrar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-container {
+  text-align: center;
+}
+
+#botonInicioSesion {
+  border: none;
+  background-color: #59e659; 
+  color: #ffffff;
+  padding: 15px 30px;
+  font-size: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#botonInicioSesion :hover{
+  background-color: #265327;
+}
+
+#botonRegistrar a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px ;
+}

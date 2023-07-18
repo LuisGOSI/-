@@ -1,0 +1,148 @@
+#container-infoInorga {
+  height: 600px;
+  display: block;
+  position: relative;
+  text-align: center;
+  background-color: black;
+  margin-bottom: 100px;
+}
+
+#fondoInorganicos {
+  height: 600px;
+  width: 100%;
+  opacity: 70%;
+  display: block;
+}
+
+#infoInorganic-titulo {
+  position: absolute;
+  top: 45%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  color: white;
+  border: #51a736;
+  text-shadow: 1px 1px 2px black;
+}
+
+#infoInorganic-texto {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+  
+#infoInorganic-texto p {
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px 2px black;
+}
+
+.inorganic-options-div {
+  margin-left: 50px;
+  margin-bottom: 100px;
+  display: grid;
+  grid-template-columns: 400px 400px 400px;
+  grid-template-rows: 350px 350px;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+
+/* option1 -------------------------------- */
+.inorganic-option1 {
+  grid-column: 1;
+  grid-row: 1;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.2);
+
+}
+
+/* option2 -------------------------------- */
+
+.inorganic-option2 {
+  grid-column: 2;
+  grid-row: 1;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.2);
+
+}
+
+.inorganic-option3 {
+  grid-column: 3; 
+  grid-row: 1;    
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+.inorganic-option4 {
+  grid-column: 1;
+  grid-row: 2;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.inorganic-option5 {
+  grid-column: 2;
+  grid-row: 2;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.inorganic-option6 {
+  grid-column: 3;
+  grid-row: 2;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+/* estilos   */
+.imagen-inor {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  cursor: pointer;
+} 
+
+.animation {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+
+.container-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 20px;
+}
+
+.container-overlay p {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.animation:hover .container-overlay {
+  opacity: 1;
+} 
