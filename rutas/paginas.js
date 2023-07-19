@@ -93,8 +93,9 @@ rutas.post("/registrarUsuario", (req, res) => {
       res.redirect("/registroExitoso");
     })
     .catch((err) => {
+      const error = "No se logro el registro";
       console.log("No se logro el registro" + err);
-      res.redirect("/");
+      res.send(`<script>alert("${error}"); window.location.href="/";</script>`);
     });
 });
 
