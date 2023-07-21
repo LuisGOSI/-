@@ -24,9 +24,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 600px;
-  height: 250px;
+  height: 310px;
   padding: 20px;
-  background-color: #4caf50;
+  background-color: #9ed37f;
   border-radius: 5px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
   font-size: 14px;
@@ -54,7 +54,7 @@
 .formulario button {
   width: 100%;
   height: 50px;
-  background-color: #32AA15;
+  background-color: #32aa15;
   color: #fff;
   border: none; 
   border-radius: 5px;
@@ -89,6 +89,7 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
 #botonInicioSesion :hover{
   background-color: #265327;
 }
@@ -97,4 +98,38 @@
   text-decoration: none;
   color: white;
   font-size: 20px ;
+}
+
+.tab-group {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; 
+  margin-bottom: 15px;
+  width: 565px;
+  background-color: green;
+  margin-bottom: 10px ;
+}
+
+.tab-group li {
+  flex: 1; 
+  text-align: center; 
+}
+
+.tab-group li a {
+  display: block;
+  text-decoration: none;
+  padding: 15px; 
+  color: white;
+  font-size: 20px;
+  border:#fff ; 
+  transition: 0.5s ease;
+}
+
+#active{
+  background-color: #306c31;
+}
+
+#inactive{
+  background-color: #4caf50;
 }

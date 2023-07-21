@@ -1,0 +1,38 @@
+/* Estilos generales para la tabla */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agrega sombra al cuadro blanco flotante */
+  background-color: #fff; /* Fondo blanco */
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+  text-align: center;
+}
+
+.styled-table th {
+  background-color: #4caf50; /* Color de fondo verde para encabezados */
+  color: #fff; /* Texto blanco para encabezados */
+}
+
+.styled-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2; /* Color de fondo gris claro para filas pares */
+}
+
+.styled-table tbody tr:hover {
+  background-color: #e0f2e6; /* Color de fondo verde claro cuando se pasa el cursor sobre la fila */
+}
+
+/* Estilos para los enlaces de la última columna */
+.styled-table td a {
+  color: #4caf50; /* Color verde para los enlaces */
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.styled-table td a:hover {
+  text-decoration: underline; /* Subrayar el enlace cuando se pasa el cursor */
+}

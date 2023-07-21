@@ -1,5 +1,6 @@
 var Sequelize = require("sequelize");
 var usuarioModelo = require("./modelos/usuarios");
+var administradorModelo = require("./modelos/admins");
 require("dotenv").config();
 
 var db = process.env.DATABASE_NAME;
@@ -30,10 +31,11 @@ conexion
   });
 
 var Usuario = usuarioModelo(conexion);
-// var 
+var Admin = administradorModelo(conexion);
 // var
 
 module.exports = {
   Usuario: Usuario,
+  Admin: Admin,
   
 };

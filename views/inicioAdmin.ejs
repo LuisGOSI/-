@@ -1,0 +1,32 @@
+<%- include("templates/encabezado.ejs")%>
+<%-include("templates/menu-desplegable.ejs")%>
+
+<h1>Usuarios registrados</h1>
+<table class="styled-table">
+  <thead>
+    <th>Id</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Usuario</th>
+    <th>Email</th>
+    <th>Estatus</th>
+    <th>Editar</th>
+  </thead>
+  <tbody>
+    <% usuarios.forEach((usuario)=>{ %>
+      <tr>
+        <td><%=usuario.id_usu%></td>
+        <td><%=usuario.nombre_usu%></td>
+        <td><%=usuario.ape_usu%></td>
+        <td><%=usuario.usuario_usu%></td>
+        <td><%=usuario.email_usu%></td>
+        <td><%=usuario.status_usu%></td>
+        <td>
+          <a href="/modificarUsuario/<%=usuario.id%>">Editar</a> /
+          <a href="/borrarUsuario/<%=usuario.id%>">Borrado fisico</a> /
+          <a href="/borrarUsuario2/<%=usuario.id%>">Borrado logico</a>
+        </td>
+      </tr>
+      <% }); %>
+  </tbody>
+</table>

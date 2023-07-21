@@ -5,13 +5,11 @@
     </div>
 </div>
 
-
-
 <div id="formulario-Inicio-Sesion" class="formulario">
-    <form action="/validar" method="post" id="formularioIniciarSesion" autocomplete="off">
+    <form action="/validarAdmin" method="post" id="formularioIniciarSesion">
         <ul class="tab-group">
-            <li class="active" id="active"><a href="/">Usuario</a></li>
-            <li class="tab" id="inactive"><a href="/iniciarAdmin">Administrador</a></li>
+                <li class="tab_active" id="inactive"><a href="/">Usuario</a></li>
+                <li class="tab" id="active"><a href="/iniciarAdmin">Administrador</a></li>
         </ul>
         <div>
             <input type="text" name="usuario" id="usuario" placeholder="Usuario" autofocus required>
@@ -25,5 +23,4 @@
             <button type="submit" id="botonInicioSesion">Iniciar sesión</button>
         </div>
     </form>
-    <div id="botonRegistrar"><a href="crearSesion">Registrarse</a></div>
 </div>  

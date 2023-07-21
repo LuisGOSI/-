@@ -1,6 +1,7 @@
 var rutas = require("express").Router();
 const { where } = require("sequelize");
 var { Usuario } = require("../conexion");
+var { Admin } = require("../conexion");
 
 // Pagina de inicio ---------------------------------------------------------------------------
 rutas.get("/inicio", (req, res) => {
@@ -47,6 +48,11 @@ rutas.get("/", (req, res) => {
   res.render("inicioSesion");
 });
 
+// // Pagina iniciar admin
+rutas.get("/iniciarAdmin", (req, res) => {
+  res.render("iniciarAdmin");
+});
+
 // // Pagina CrearSesion -----------------------------------------------------------------------
 rutas.get("/crearSesion", (req, res) => {
   res.render("RegistroUsuario");
@@ -74,6 +80,8 @@ rutas.post("/validar", (req, res) => {
     .then((inicioS) => {
       if (inicioS.length > 0) {
         req.session.usuario = usuario;
+        // console.log(inicioS.dataValues.nombre_usu);
+        // req.session.nombre = inicioS;
         res.redirect("inicio");
       } else {
         const error = "Nombre de usuario o contraseña incorrecta";
@@ -83,6 +91,37 @@ rutas.post("/validar", (req, res) => {
     })
 });
 
+rutas.post("/validarAdmin", (req, res) => {
+  const usuario = req.body.usuario;
+  const contraseña = req.body.password;
+
+  Admin.findAll({ where: { usuario_admin: usuario, contra_admin: contraseña } })
+    .then((inicioSA) => {
+      if (inicioSA.length > 0) {
+        req.session.admin = usuario;
+        res.redirect("inicioAdmin");
+      } else {
+        const error = "Nombre de usuario o contraseña incorrecta";
+        console.log(error);
+        res.send(`<script>alert("${error}"); window.location.href="/iniciarAdmin";</script>`);
+      }
+    })
+});
+
+// Pagina de inicio admin ---------------------------------------------------------------------------
+rutas.get("/inicioAdmin", (req, res) => {
+  if (req.session.admin) {
+    Usuario.findAll({where:{status_usu:1}})
+    .then((usersGreenWaste)=>{
+      res.render("inicioAdmin", {usuarios:usersGreenWaste});
+    })
+    .catch((err)=>{{
+      console.log("Error " + err);
+    }})
+  } else {
+    res.redirect("/");
+  }
+});
 
 
 // Ruta para REGISTRAR USUARIO -----------------------------------------------------------------
@@ -103,5 +142,6 @@ rutas.post("/registrarUsuario", (req, res) => {
 rutas.get("/registrar_manualidad", (req, res) => {
   res.render("registroManualidad");
 });
+
 
 module.exports = rutas;

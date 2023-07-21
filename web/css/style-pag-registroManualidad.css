@@ -2,15 +2,13 @@
     width: 550px;
     height: auto;
     padding: 20px;
-    background-color: rgb(21, 191, 21);
+    background-color:  #9ed37f;
     border-radius: 5px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
     font-size: 14px;
     color: #444;
     box-sizing: border-box;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    margin-top: 20px    ;
+    margin: 30px auto;
   } 
 
     h1.regis {
@@ -21,32 +19,164 @@
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
-  
-  .regis-form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
-  }
-
-  .regis-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
-  }
-
-  .regis-input {
-    display: block;
-    width: 100%;
+    
+  .regis-input-titulo{
+   margin-top: 10px;
+   margin-bottom: 10px;
+    width: 490px;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 10px;
+    border: 2px solid white;
+  }
+  .regis-input-descripcion {
+    position: relative; 
+    margin-top: 10px;
     margin-bottom: 10px;
+    width: 490px;
+    height: 50px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    border: 2px solid white;
+  }
+  
+  .regis-input-descripcion::placeholder {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #888;
+    transition: top 0.3s ease-out, font-size 0.3s ease-out;
+  }
+  
+  .regis-input-descripcion:focus::placeholder,
+  .regis-input-descripcion:not(:placeholder-shown)::placeholder {
+    top: -5px;
+    font-size: 12px;
+    color: #444;
   }
 
-  .regis-input[type="submit"] {
-    padding: 10px 20px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    cursor: pointer;
+  .regis-input-materiales,
+  .regis-input-pasos {
+    width: 220px;
+    height: 100px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    position: relative;
   }
+  .regis-input-materiales::placeholder,
+.regis-input-pasos::placeholder {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #888;
+  transition: top 0.3s ease-out, font-size 0.3s ease-out;
+}
+
+.regis-input-materiales:focus::placeholder,
+.regis-input-materiales:not(:placeholder-shown)::placeholder,
+.regis-input-pasos:focus::placeholder,
+.regis-input-pasos:not(:placeholder-shown)::placeholder {
+  top: -5px;
+  font-size: 12px;
+  color: #444;
+}
+  
+  .regis-input-container {
+    display: inline-block; 
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .regis-input-materiales {
+    margin-right: 20px; 
+  }
+
+  .regis-input-porque {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 490px; 
+  height: 50px; 
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  position: relative;
+  resize: vertical; 
+  overflow-y: hidden; 
+  }
+.regis-input-porque::placeholder {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #888;
+  transition: top 0.3s ease-out, font-size 0.3s ease-out;
+}
+
+.regis-input-porque:focus::placeholder,
+.regis-input-porque:not(:placeholder-shown)::placeholder {
+  top: -5px;
+  font-size: 12px;
+  color: #444;
+}
+
+
+.regis-input[type="submit"] {
+  display: block;
+  width: 150px;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: green;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.regis-input-imagen {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 490px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #9ed37f; 
+  color: #444;
+  font-size: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.regis-input-imagen input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.regis-input-imagen::before {
+  content: "Cargar imagen";
+  display: block;
+  text-align: center;
+  line-height: 30px;
+}
+
+.regis-input-imagen:hover {
+  background-color: #8dc26c; 
+  color: #333;
+  border-color: #8dc26c;
+}
+
+#imagenMostrada {
+  max-width: 100%; 
+  height: auto;
+  margin-top: 10px; 
+  margin-bottom: 10px;
+}
