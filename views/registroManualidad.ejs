@@ -1,35 +1,35 @@
-<%- include("templates/encabezado.ejs")%> <%-
-include("templates/menu-desplegable.ejs")%>
-<form>
-  <div class="green-box">
-      <h1 class="regis">Registro de manualidad</h1>
-      <form class="regis-form" action="procesar_registro.php" method="POST" enctype="multipart/form-data">
+<%- include("templates/encabezado.ejs")%>
+<%- include("templates/menu-desplegable.ejs")%>
 
-      <input class="regis-input-titulo" type="text" id="titulo" name="titulo" placeholder="Ingrese el nombre de la manualidad:"  required />
-
-      <div class="regis-input-container">
-        <input class="regis-input-imagen" type="file"  id="imagen" name="imagen" accept="image/*" onchange="mostrarImagen()" required/>
-        <img id="imagenMostrada" src="#" alt="Imagen cargada" style="display: none" />
-      </div>
-      
-      <input class="regis-input-descripcion" type="text" id="introduccion" name="introduccion" placeholder="Descripcion:" required />
-     
-      <div class="regis-input-container">
-        <input class="regis-input-materiales" type="text" id="materiales" name="materiales" placeholder="Materiales:" required />
-      </div>
-         
-      <div class="regis-input-container">
-        <input class="regis-input-pasos" type="text" id="pasos" name="pasos" placeholder="Pasos:" required />
-      </div>
-        
-        <textarea class="regis-input-porque" id="razon" name="razon" placeholder="Por que deberian hacer la manualidad:" required></textarea>
-       
-      
-  
-      <input class="regis-input" type="submit" value="Registrar" />
+<form class="green-box regis-form" action="/agregar_manualidad" method="POST">
+  <h1 class="regis">Registro de manualidad</h1>
+  <div class="regis-input-container">
+    <input class="regis-input-titulo" type="text" id="titulo" name="titulo" placeholder="Ingrese el nombre de la manualidad:" required />
   </div>
+
+  <div class="regis-input-container">
+    <input class="regis-input-titulo" type="text" id="imagen" name="imagen_url" placeholder="Ingrese el url de la imagen" required />
+    <!-- <img id="imagenMostrada" src="#" alt="Imagen cargada" style="display: none" /> -->
+  </div>
+
+  <div class="regis-input-container">
+    <textarea class="regis-input-descripcion" id="descripcion" name="descripcion" placeholder="Descripcion:" required></textarea>
+  </div>
+
+  <div class="regis-input-container">
+    <textarea class="regis-input-materiales" id="materiales" name="materiales" placeholder="Materiales:" required></textarea>
+  </div>
+
+  <div class="regis-input-container">
+    <textarea class="regis-input-pasos" id="pasos" name="pasos" placeholder="Pasos:" required></textarea>
+  </div>
+
+  <textarea class="regis-input-porque" id="razon" name="razon" placeholder="Por que deberian hacer la manualidad:" required></textarea>
+
+  <input class="regis-input" type="submit" value="Registrar" />
 </form>
-<script>
+
+<!-- <script>
   function mostrarImagen() {
     const fileInput = document.getElementById("imagen");
     const imageElement = document.getElementById("imagenMostrada");
@@ -49,5 +49,5 @@ include("templates/menu-desplegable.ejs")%>
       imageElement.style.display = "none";
     }
   }
-  </script>
+  </script> -->
 <%- include("templates/pie.ejs")%>

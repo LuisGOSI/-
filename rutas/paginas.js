@@ -1,7 +1,11 @@
 var rutas = require("express").Router();
+const path = require("path");
+const fs = require("fs");
+const bcrypt = require("bcrypt");
 const { where } = require("sequelize");
 var { Usuario } = require("../conexion");
 var { Admin } = require("../conexion");
+var { Inorganico } = require("../conexion");
 
 // Pagina de inicio ---------------------------------------------------------------------------
 rutas.get("/inicio", (req, res) => {
@@ -19,7 +23,14 @@ rutas.get("/organicos", (req, res) => {
 
 // Pagina de inorganicos -----------------------------------------------------------------------
 rutas.get("/inorganicos", (req, res) => {
-  res.render("pagina_inorganicos");
+  Inorganico.findAll()
+    .then((inorganicos) => {
+      res.render("pagina_inorganicos", { inorganicos: inorganicos }); 
+    })
+    .catch((err) => {
+      console.log("Error al obtener las manualidades: " + err);
+      res.status(500).send("Error al obtener las manualidades");
+    });
 });
 
 // Pagina de residuos medicos ------------------------------------------------------------------
@@ -125,23 +136,64 @@ rutas.get("/inicioAdmin", (req, res) => {
 
 
 // Ruta para REGISTRAR USUARIO -----------------------------------------------------------------
+
 rutas.post("/registrarUsuario", (req, res) => {
-  Usuario
-    .create(req.body)
-    .then(() => {
-      res.redirect("/registroExitoso");
-    })
-    .catch((err) => {
-      const error = "No se logro el registro";
-      console.log("No se logro el registro" + err);
-      res.send(`<script>alert("${error}"); window.location.href="/";</script>`);
-    });
+  const contraseñaPlana = req.body.contra_usu;
+  const saltRounds = 10;
+
+  bcrypt.hash(contraseñaPlana, saltRounds, (err, hash) => {
+    if (err) {
+      console.error("Error al encriptar la contraseña:", err);
+      return res.status(500).send("Error al registrar el usuario");
+    }
+
+    const nuevoUsuario = {
+      nombre_usu: req.body.nombre_usu,
+      ape_usu: req.body.ape_usu,
+      usuario_usu: req.body.usuario_usu,
+      email_usu: req.body.email_usu,
+      contra_usu: hash, 
+    };
+
+    Usuario.create(nuevoUsuario)
+      .then(() => {
+        res.redirect("/registroExitoso");
+      })
+      .catch((err) => {
+        const error = "No se logró el registro";
+        console.error(error, err);
+        res.send(`<script>alert("${error}"); window.location.href="/";</script>`);
+      });
+  });
 });
 
 // ruta registrar manualidad -------------------------------------------------------------------
 rutas.get("/registrar_manualidad", (req, res) => {
   res.render("registroManualidad");
 });
+
+// Ruta para agregar una manualidad ------------------------------------------------------------
+rutas.post("/agregar_manualidad", (req, res) => {
+  const { titulo, imagen_url, descripcion, materiales, pasos, razon } = req.body;
+
+  Inorganico.create({
+    titulo_inor: titulo,
+    imagen_inor: imagen_url, 
+    desc_inor: descripcion,
+    mater_inor: materiales,
+    pasos_inor: pasos,
+    razon_inor: razon,
+    status_inor: true, 
+  })
+    .then(() => {
+      res.send(`<script>alert("Registro de manualidad exitoso"); window.location.href="/registrar_manualidad";</script>`);
+    })
+    .catch((err) => {
+      console.log("Error al agregar la manualidad: " + err);
+      res.status(500).send("Error al agregar la manualidad");
+    });
+});
+
 
 
 module.exports = rutas;
