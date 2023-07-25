@@ -1,5 +1,5 @@
-<%- include("templates/encabezado.ejs")%> <%-
-include("templates/menu-desplegable.ejs")%>
+<%- include("templates/encabezado.ejs", { usuario: usuario })%>
+<%- include("templates/menu-desplegable.ejs")%>
 
 <div id="container-infoInorga">
   <img
@@ -21,12 +21,11 @@ include("templates/menu-desplegable.ejs")%>
   </div>
 </div>
 
-
 <div class="inorganic-options-div">
   <% inorganicos.forEach((manualidad) => { %>
     <div class="inorganic-option">
       <div class="animation">
-        <a href="#">
+        <a href="/manualidad/<%= manualidad.id_inor %>"> 
           <img class="imagen-inor" src="<%= manualidad.imagen_inor %>" />
           <div class="container-overlay">
             <p><%= manualidad.titulo_inor %></p>

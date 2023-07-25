@@ -1,6 +1,5 @@
 var rutas = require("express").Router();
 const path = require("path");
-const fs = require("fs");
 const bcrypt = require("bcrypt");
 const { where } = require("sequelize");
 var { Usuario } = require("../conexion");
@@ -8,24 +7,41 @@ var { Admin } = require("../conexion");
 var { Inorganico } = require("../conexion");
 
 // Pagina de inicio ---------------------------------------------------------------------------
-rutas.get("/inicio", (req, res) => {
-  if (req.session.usuario) {
-    res.render("inicio",{usuario: req.session.usuario});
+rutas.get("/inicio/:usuario", (req, res) => {
+  const usuario = req.params.usuario;
+  if (req.session.usuario && req.session.usuario === usuario) {
+    Inorganico.findAll({
+      limit: 3, 
+      order: [['createdAt', 'DESC']], 
+    })
+      .then((manualidades) => {
+        res.render("inicio", { usuario, manualidades });
+      })
+      .catch((err) => {
+        console.log("Error al obtener las manualidades: " + err);
+        res.status(500).send("Error al obtener las manualidades");
+      });
   } else {
     res.redirect("/");
   }
 });
 
+
+
 // Pagina de organicos -------------------------------------------------------------------------
 rutas.get("/organicos", (req, res) => {
-  res.render("pagina_organicos");
+  if (req.session.usuario) {
+    res.render("pagina_organicos", { usuario: req.session.usuario });
+  } else {
+    res.redirect("/");
+  }
 });
 
 // Pagina de inorganicos -----------------------------------------------------------------------
 rutas.get("/inorganicos", (req, res) => {
   Inorganico.findAll()
     .then((inorganicos) => {
-      res.render("pagina_inorganicos", { inorganicos: inorganicos }); 
+      res.render("pagina_inorganicos", { inorganicos, usuario: req.session.usuario }); 
     })
     .catch((err) => {
       console.log("Error al obtener las manualidades: " + err);
@@ -33,24 +49,49 @@ rutas.get("/inorganicos", (req, res) => {
     });
 });
 
-// Pagina de residuos medicos ------------------------------------------------------------------
+// Página de residuos medicos ------------------------------------------------------------------
 rutas.get("/residuos_medicos", (req, res) => {
-  res.render("residuos_medicos");
+  if (req.session.usuario) {
+    res.render("residuos_medicos", { usuario: req.session.usuario });
+  } else {
+    res.redirect("/");
+  }
 });
+
 
 // Pagina de residuos peligrosos ---------------------------------------------------------------
 rutas.get("/residuos_toxicos", (req, res) => {
-  res.render("residuos_peligrosos");
+  if (req.session.usuario) {
+    res.render("residuos_peligrosos", { usuario: req.session.usuario });
+  } else {
+    res.redirect("/");
+  }
 });
+
 
 // Pagina sobre nosotros -----------------------------------------------------------------------
 rutas.get("/sobre_nosotros", (req, res) => {
-  res.render("sobre_nosotros");
+  if (req.session.usuario) {
+    res.render("sobre_nosotros", { usuario: req.session.usuario });
+  } else {
+    res.redirect("/");
+  }
 });
 
-// Sillon con palets ---------------------------------------------------------------------------
-rutas.get("/sillon_palets", (req, res) => {
-  res.render("manualidad");
+// Manualidad ----------------------------------------------------------------------------------
+rutas.get("/manualidad/:id_inor", (req, res) => {
+  Inorganico.findByPk(req.params.id_inor)
+    .then((manualidad) => {
+      if (manualidad) {
+        res.render("manualidad", { manualidad, usuario: req.session.usuario });
+      } else {
+        res.status(404).send("Manualidad no encontrada");
+      }
+    })
+    .catch((err) => {
+      console.log("Error al obtener la manualidad: " + err);
+      res.status(500).send("Error al obtener la manualidad");
+    });
 });
 
 // // Pagina iniciarSesion ---------------------------------------------------------------------
@@ -91,16 +132,15 @@ rutas.post("/validar", (req, res) => {
     .then((inicioS) => {
       if (inicioS.length > 0) {
         req.session.usuario = usuario;
-        // console.log(inicioS.dataValues.nombre_usu);
-        // req.session.nombre = inicioS;
-        res.redirect("inicio");
+        res.redirect(`/inicio/${usuario}`); 
       } else {
         const error = "Nombre de usuario o contraseña incorrecta";
         console.log(error);
         res.send(`<script>alert("${error}"); window.location.href="/";</script>`);
       }
-    })
+    });
 });
+
 
 rutas.post("/validarAdmin", (req, res) => {
   const usuario = req.body.usuario;
@@ -169,7 +209,11 @@ rutas.post("/registrarUsuario", (req, res) => {
 
 // ruta registrar manualidad -------------------------------------------------------------------
 rutas.get("/registrar_manualidad", (req, res) => {
-  res.render("registroManualidad");
+  if (req.session.usuario) {
+    res.render("registroManualidad", { usuario: req.session.usuario });
+  } else {
+    res.redirect("/");
+  }
 });
 
 // Ruta para agregar una manualidad ------------------------------------------------------------

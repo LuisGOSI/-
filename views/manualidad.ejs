@@ -1,53 +1,40 @@
-<%- include("templates/encabezado.ejs")%> <%-
-include("templates/menu-desplegable.ejs")%>
+<%- include("templates/encabezado.ejs", { usuario: usuario })%>
+<%- include("templates/menu-desplegable.ejs")%>
 <div id="container-infoPalets">
     <img
-      src="/GreenWaste/css/media/diy_1.jpg"
-      alt=""
+      src="<%= manualidad.imagen_inor %>"
+      alt="<%= manualidad.titulo_inor %>"
       id="fondoPalets"
     />
     <div id="cuadroOrganiInfo">
       <div id="infoPalets-titulo">
-        <h1>Sillon hecho con palets</h1>
+        <h1><%= manualidad.titulo_inor %></h1>
       </div>
   
   <div class="container-Palets">
       <div class="info-container-Palets">
-      
-        <p>En este proyecto te mostraré los pasos y los materiales necesarios para construir un sofá utilizando palets, una excelente opción para aquellos que desean darle una segunda vida a este material y agregar un toque único a su espacio. Además, reutilizar palets es beneficioso tanto para el medio ambiente como para tu bolsillo. A continuación, te guiaré a través del proceso de construcción de un cómodo y elegante sofá con palets.
+        <p>
         <div class="container-green-Palets">
-            <ol>
-
             <p> <h2>Materiales necesarios</h2></p>
-            <li>Palets: Dependiendo del tamaño y la altura que desees para tu sofá, necesitarás al menos 2 o 3 palets. Puedes encontrarlos en tiendas de carga, almacenes o incluso en línea. Asegúrate de elegir palets en buen estado y que estén libres de plagas.</li>
-            <li>Cojines o colchonetas: Para hacer el sofá más cómodo, necesitarás cojines o colchonetas de tamaño adecuado para adaptarse a los palets. Puedes elegir diferentes colores y texturas para agregar estilo y comodidad.</li>
-
-            <li >Herramientas:</li>
             <ul>
-                    <li  class="sublist">Sierra eléctrica o una sierra manual para cortar los palets según tus necesidades.</li>
-                    <li  class="sublist">Lijadora para alisar las superficies rugosas de los palets.</li>
-                    <li  class="sublist">Taladro y tornillos para fijar los palets entre sí.</li>
-                    <li class="sublist">Cinta métrica para medir y marcar los cortes en los palets.</li>
-          </ul>
-        </ol>
+              <% const materialesList = manualidad.mater_inor.split('\n'); %>
+              <% materialesList.forEach((material) => { %>
+                <li><%= material.trim() %></li>
+              <% }); %>
+            </ul>
         </div>
   
-          <ol>
-            <p><h2>Pasos para construir el sofá con palets:</h2> </p>
-            <strong> <li>Limpieza y preparación:</strong> <br><br> Limpia los palets a fondo para eliminar cualquier suciedad o astillas. Si deseas, puedes lijar las superficies para suavizarlas y evitar cualquier peligro de astillas.</li>
-            <strong> <li> Medición y corte:</strong>  <br><br> Mide y marca los puntos de corte en los palets según el tamaño deseado para tu sofá. Utiliza la sierra eléctrica o manual para cortar los palets cuidadosamente siguiendo las marcas.</li><br> 
-            <strong> <li>Ensamblaje:</strong> <br><br>Coloca los palets cortados en la configuración que prefieras para tu sofá. Asegúralos entre sí utilizando el taladro y los tornillos. Asegúrate de que los palets estén firmemente sujetos para garantizar la estabilidad del sofá.</li><br> 
-            <strong> <li>Añade los cojines: </strong> <br><br> Coloca los cojines o colchonetas en la parte superior de los palets para crear un asiento cómodo. Puedes usar cojines grandes para el respaldo y cojines más pequeños para los asientos. Juega con diferentes colores y estampados para agregar estilo a tu sofá con palets.
-            </li><br>   
-          </ol>
-          <ol>
-            <p><h3>Por que deberias hacer este centro de mesa?</h3></p>
-            <strong><li>Medio ambiente:</strong> <br><br>Utilizar palets para construir muebles es una excelente forma de reutilizar un material que de otra manera podría terminar en un vertedero. Al reutilizarlos, estás reduciendo el desperdicio y contribuyendo a la conservación del medio ambiente.</li><br>
-            <strong> <li>Económico:</strong> <br><br>La construcción de un sofá con palets es una opción económica en comparación con la compra de un sofá convencional. Los palets suelen ser asequibles o incluso gratuitos, lo que te permite ahorrar dinero en tus proyectos de decoración.</li><br>
-            <strong><li>Versatilidad y personalización: </strong> <br><br>Los palets ofrecen una amplia gama de posibilidades de diseño. Puedes adaptar el tamaño, la forma y el estilo del sofá según tus necesidades y preferencias. Además, puedes pintar o teñir los palets para que se ajusten a la estética deseada.</li><br>
-            <strong><li>Durabilidad:</strong> <br><br>Los palets están diseñados para soportar el transporte y el manejo de mercancías pesadas, lo que los convierte en una base sólida y duradera para la construcción de muebles. Si se cuidan adecuadamente, los sofás de palets pueden durar mucho tiempo.</li><br>
-          </ol>
-        </p>
+            <p><h2>Pasos:</h2> </p>
+            <ol>
+              <% const pasosList = manualidad.pasos_inor.split('\n'); %>
+              <% pasosList.forEach((paso) => { %>
+                <li><%= paso.trim() %></li>
+              <% }); %>
+            </ol>
+
+            <p><h3>Por que deberia hacer esta manualidad</h3></p>
+            <p><%= manualidad.razon_inor %></p>
+          </div>
       </div>
   
       <%- include("templates/pie.ejs")%>

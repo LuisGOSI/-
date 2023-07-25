@@ -1,4 +1,4 @@
-<%- include("templates/encabezado.ejs")%>
+<%- include("templates/encabezado.ejs", { usuario: usuario })%>
 <%- include("templates/menu-desplegable.ejs")%>
 
 <form class="green-box regis-form" action="/agregar_manualidad" method="POST">

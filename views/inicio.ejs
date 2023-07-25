@@ -1,5 +1,5 @@
-<%- include("templates/encabezado.ejs")%>
-<%-include("templates/menu-desplegable.ejs")%>
+<%- include("templates/encabezado.ejs", { usuario: usuario })%>
+<%- include("templates/menu-desplegable.ejs")%>
 
 <div id="container-infoInicio">
   <img src="/GreenWaste/css/media/fondoInicio.jpg" alt="" id="fondoInicio" />
@@ -19,30 +19,16 @@
 
 <div class="container-sugerencia">
   <div class="container-sugerencia-imagen">
-    <div class="card">
-      <a href="sillon_palets">
-      <img src="/GreenWaste/css/media/diy_1.jpg" />
-      <div class="container-sugerencia-overlay">
-        <p>Sillon hecho con palets</p>
+    <% manualidades.forEach((manualidad) => { %>
+      <div class="card">
+        <a href="/manualidad/<%= manualidad.id_inor %>">
+          <img src="<%= manualidad.imagen_inor %>" />
+          <div class="container-sugerencia-overlay">
+            <p><%= manualidad.titulo_inor %></p>
+          </div>
+        </a>
       </div>
-      </a>
-    </div>
-    <div class="card">
-      <a href="maceta_botella">
-        <img src="/GreenWaste/css/media/diy_2.jpg" />
-        <div class="container-sugerencia-overlay">
-          <p>Maceta colgante de botella</p>
-        </div>
-      </a>
-    </div>
-    <div class="card" >
-      <a href="centro_botella">
-      <img src="/GreenWaste/css/media/diy_3.jpg" />
-      <div class="container-sugerencia-overlay">
-        <p>Centro de mesa de botella</p>
-      </div>
-      </a>
-    </div>
+    <% }); %>
   </div>
 </div>
 
