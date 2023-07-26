@@ -1,0 +1,29 @@
+<%- include("templates/encabezado.ejs", { usuario: usuario })%>
+<%- include("templates/menu-desplegable.ejs")%>
+
+<h1>Modificar usuario</h1>
+<div id="container-formulario">
+    <form action="/modificarUsuario" method="post" id="formulario">
+        <div class="bloque">
+            <input type="hidden" name="id_usu" id="id_usu" value="<%=usuario.id_usu %>" >
+            <h4 class="texto">Nombre:  </h4>
+            <input type="text" name="nombre_usu" id="nombre_usu" autofocus placeholder="Nombre" value="<%=usuario.nombre_usu %>">
+            <span id="mensajeNombre"></span>
+        </div>
+        <div class="bloque">
+            <h4 class="texto">Usuario: </h4>
+            <input type="text" name="usuario_usu" id="usuario_usu" placeholder="Usuario" value="<%=usuario.usuario_usu %>">
+            <span id="mensajeNombre"></span>
+        </div>
+        <div class="bloque">
+            <h4 class="texto">Password: </h4>
+            <input type="password" name="contra_usu" id="contra_usu" placeholder="Contraseña" value="<%=usuario.contra_usu %>">
+            <span id="mensajeNombre"></span>
+        </div>
+        <div class="bloque">
+            <button type="submit" id="button-edit">Modificar usuario</button>
+        </div>
+    </form>
+</div>
+
+<%- include("templates/pie") %>

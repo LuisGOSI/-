@@ -82,10 +82,9 @@
 
 #botonInicioSesion {
   border: none;
-  background-color: #59e659; 
+  background-color: #32aa15; 
   color: #ffffff;
   padding: 15px 30px;
-  font-size: 20px;
   border-radius: 4px;
   cursor: pointer;
 }

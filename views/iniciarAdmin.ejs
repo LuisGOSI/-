@@ -5,22 +5,22 @@
     </div>
 </div>
 
-<div id="formulario-Inicio-Sesion" class="formulario">
+<div id="formulario-Inicio-Sesion-Admin" class="formulario">
     <form action="/validarAdmin" method="post" id="formularioIniciarSesion">
         <ul class="tab-group">
                 <li class="tab_active" id="inactive"><a href="/">Usuario</a></li>
                 <li class="tab" id="active"><a href="/iniciarAdmin">Administrador</a></li>
         </ul>
         <div>
-            <input type="text" name="usuario" id="usuario" placeholder="Usuario" autofocus required>
+            <input type="text" name="usuario" id="admin" placeholder="Usuario" autofocus required>
             <span id="mensajeUsuario"></span>
         </div>
         <div>
-            <input type="password" name="password" id="password" placeholder="Contraseña" required>
+            <input type="password" name="password" id="password-admin" placeholder="Contraseña" required>
             <span id="mensajePassword"></span>
         </div>
         <div>
-            <button type="submit" id="botonInicioSesion">Iniciar sesión</button>
+            <button type="submit" id="botonInicioSesionAdmin">Iniciar sesión</button>
         </div>
     </form>
 </div>  

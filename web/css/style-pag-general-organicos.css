@@ -1,0 +1,30 @@
+
+#fondoOrg {
+height: 600px;
+width: 100%;
+opacity: 0.7;
+display: block;
+}
+
+#titulo {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    padding: 10px; 
+ }
+
+.info-container {
+    background-color: white;
+    padding: 20px; 
+    border: 1px solid #ccc; 
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
+    font-family: Arial, Helvetica, sans-serif;
+  }

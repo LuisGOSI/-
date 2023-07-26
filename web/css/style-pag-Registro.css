@@ -52,21 +52,22 @@
 
 /* Registro exitoso ---------------------------------------------------------------------------- */
 
-#container_registroExitoso {
+#container-registroExitoso{
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 300px;
-  height: 250px;
+  margin-top: 10px;
+}
+
+#registroExitoso {
   background-color: #fdfdfd;
-  color: rgb(0, 0, 0);
-  padding: 10px;
-  border-radius: 10px;
+  display: inline;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 400px;
+  border-radius: 20px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 #linkRegistroExitoso {
@@ -84,7 +85,12 @@
   font-size: 20px;
   border-radius: 4px;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 #botonRegistroExitoso:hover {
   background-color: #2e7d2b;
+}
+
+#correcto{
+  margin-top: 10px;
 }

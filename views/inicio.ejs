@@ -1,5 +1,5 @@
 <%- include("templates/encabezado.ejs", { usuario: usuario })%>
-<%- include("templates/menu-desplegable.ejs")%>
+<%- include("templates/menu-desplegable.ejs", { usuario: usuario }) %>
 
 <div id="container-infoInicio">
   <img src="/GreenWaste/css/media/fondoInicio.jpg" alt="" id="fondoInicio" />
@@ -38,7 +38,7 @@
 
 <div class="container">
   <div class="Organicos">
-    <a href="organicos">
+    <a href="/organicos">
       <button type="submit" class="Org">
         <img src="/GreenWaste/css/media/organicos.png" alt="Organicos" />
       </button>
@@ -46,7 +46,7 @@
     <div class="descResi">Organicos</div>
   </div>
   <div class="Inorganicos">
-    <a href="inorganicos">
+    <a href="/inorganicos">
       <button type="submit" class="Ing">
         <img src="/GreenWaste/css/media/inorganicos.png" alt="Inorganicos" />
       </button>
@@ -55,7 +55,7 @@
   </div>
 
   <div class="Biohazard">
-    <a href="residuos_toxicos">
+    <a href="/residuos_toxicos">
       <button type="submit" class="Rec">
         <img src="/GreenWaste/css/media/peligrosos.png" />
       </button>
@@ -64,7 +64,7 @@
   </div>
 
   <div class="Medicamentos">
-    <a href="residuos_medicos">
+    <a href="/residuos_medicos">
       <button type="submit" class="Med">
         <img src="/GreenWaste/css/media/medicos.png" />
       </button>

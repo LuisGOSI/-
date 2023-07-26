@@ -1,0 +1,43 @@
+#container-formulario{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#formulario{
+    background-color: white;
+    height: 270px;
+    width: 400px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.bloque{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.texto{
+    margin-right: 10px;
+}
+
+#formulario input{
+    height: 20px;
+    border-radius: 5px;
+}
+
+#button-edit{
+    background-color: #4caf50;
+    color: white;
+    width: 250px;
+    margin-top: 15px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+}
+
+#button-edit:hover{
+    background-color: #306c31;
+    cursor: pointer;
+}

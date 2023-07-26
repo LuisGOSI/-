@@ -8,14 +8,13 @@ var { Inorganico } = require("../conexion");
 
 // Pagina de inicio ---------------------------------------------------------------------------
 rutas.get("/inicio/:usuario", (req, res) => {
-  const usuario = req.params.usuario;
-  if (req.session.usuario && req.session.usuario === usuario) {
+  if (req.session.usuario) {
     Inorganico.findAll({
       limit: 3, 
       order: [['createdAt', 'DESC']], 
     })
       .then((manualidades) => {
-        res.render("inicio", { usuario, manualidades });
+        res.render("inicio", { usuario: req.session.usuario, manualidades });
       })
       .catch((err) => {
         console.log("Error al obtener las manualidades: " + err);
@@ -63,6 +62,15 @@ rutas.get("/residuos_medicos", (req, res) => {
 rutas.get("/residuos_toxicos", (req, res) => {
   if (req.session.usuario) {
     res.render("residuos_peligrosos", { usuario: req.session.usuario });
+  } else {
+    res.redirect("/");
+  }
+});
+
+// Pagina de Composta con Compostador -------------------------------------------------------------------------
+rutas.get("/composta_compostador", (req, res) => {
+  if (req.session.usuario) {
+    res.render("composta_compostador", { usuario: req.session.usuario });
   } else {
     res.redirect("/");
   }
@@ -162,13 +170,21 @@ rutas.post("/validarAdmin", (req, res) => {
 // Pagina de inicio admin ---------------------------------------------------------------------------
 rutas.get("/inicioAdmin", (req, res) => {
   if (req.session.admin) {
-    Usuario.findAll({where:{status_usu:1}})
-    .then((usersGreenWaste)=>{
-      res.render("inicioAdmin", {usuarios:usersGreenWaste});
-    })
-    .catch((err)=>{{
-      console.log("Error " + err);
-    }})
+    Usuario.findAll({ where: { status_usu: 1 } })
+      .then((usersGreenWaste) => {
+        Inorganico.findAll()
+          .then((manualidades) => {
+            res.render("inicioAdmin", { usuarios: usersGreenWaste, manualidades: manualidades, usuario: req.session.usuario });
+          })
+          .catch((err) => {
+            console.log("Error al obtener las manualidades: " + err);
+            res.status(500).send("Error al obtener las manualidades");
+          });
+      })
+      .catch((err) => {
+        console.log("Error " + err);
+        res.redirect("/");
+      });
   } else {
     res.redirect("/");
   }
@@ -235,6 +251,83 @@ rutas.post("/agregar_manualidad", (req, res) => {
     .catch((err) => {
       console.log("Error al agregar la manualidad: " + err);
       res.status(500).send("Error al agregar la manualidad");
+    });
+});
+
+// ruta de borrado fisico de usuarios
+rutas.get("/borrarUsuario/:id_usu",(req,res)=>{
+  Usuario.destroy({where:{id_usu:req.params.id_usu}})
+  .then(()=>{
+    res.send(`<script>alert("Borrado fisico exitoso"); window.location.href="/inicioAdmin";</script>`);
+  })
+  .catch((err)=>{
+    console.log("Error: "+err);
+    res.redirect("/");
+  });
+});
+
+// ruta de borrado logico fisico de usuarios
+rutas.get("/borrarUsuario2/:id_usu",(req,res)=>{
+
+  Usuario.update({status_usu:0}, {where:{id_usu:req.params.id_usu}})
+  .then(()=>{
+    res.send(`<script>alert("Borrado logico exitoso"); window.location.href="/inicioAdmin";</script>`);
+  })
+  .catch((err)=>{
+    console.log("Error: "+err);
+    res.redirect("/");
+  });
+});
+
+// ruta que modifica el usuario
+rutas.get("/modificarUsuario/:id_usu", (req, res) => {
+  const idUsuario = req.params.id_usu;
+  Usuario.findByPk(idUsuario)
+    .then((usuario) => {
+      if (usuario) {
+        res.render("editarUsuario", { usuario });
+      } else {
+        res.status(404).send("Usuario no encontrado");
+      }
+    })
+    .catch((err) => {
+      console.log("Error al obtener el usuario: " + err);
+      res.status(500).send("Error al obtener el usuario");
+    });
+});
+
+// ruta de modificar usuario
+rutas.post("/modificarUsuario", (req, res) => {
+  Usuario.update(req.body, { where: { id_usu: req.body.id_usu } })
+    .then(() => {
+      res.redirect("/");
+    })
+    .catch((err) => {
+      console.log("Error: " + err);
+    });
+});
+
+// ruta de borrar fisicamente manualidades 
+rutas.get("/borrarManualidad/:id_inor", (req, res) => {
+  Inorganico.destroy({ where: { id_inor: req.params.id_inor } })
+    .then(() => {
+      res.send(`<script>alert("Borrado físico exitoso"); window.location.href="/inicioAdmin";</script>`);
+    })
+    .catch((err) => {
+      console.log("Error: " + err);
+      res.redirect("/");
+    });
+});
+
+// ruta de borrar logicamente manualidades 
+rutas.get("/borrarManualidad2/:id_inor", (req, res) => {
+  Inorganico.update({ status_inor: 0 }, { where: { id_inor: req.params.id_inor } })
+    .then(() => {
+      res.send(`<script>alert("Borrado lógico exitoso"); window.location.href="/inicioAdmin";</script>`);
+    })
+    .catch((err) => {
+      console.log("Error: " + err);
+      res.redirect("/");
     });
 });
 
