@@ -1,4 +1,4 @@
-<%- include("templates/encabezado.ejs")%>
+<%- include("templates/encabezado.ejs"), {user: user}%>
 <div class="barraMenu">
     <div class="logoSec">
     <img src="/GreenWaste/css/media/Recurso 1.png" alt="Logo" title="Logo de GreenWaste"/>
@@ -14,7 +14,7 @@
 <!-- Tabla de usuarios -->
 
 <div id="texto-inicial">
-  <h1>Usuarios registrados</h1>
+  <h1>Usuarios registrados</h1> 
 </div>
 
 <table class="styled-table">
@@ -25,7 +25,6 @@
     <th>Usuario</th>
     <th>Email</th>
     <th>Estatus</th>
-    <th>Editar</th>
     <th>Borrar</th>
   </thead>
   <tbody>
@@ -37,9 +36,6 @@
         <td><%= usuario.usuario_usu %></td>
         <td><%= usuario.email_usu %></td>
         <td><%= usuario.status_usu %></td>
-        <td>
-          <a href="/modificarUsuario/<%= usuario.id_usu %>">Editar</a>
-        </td>
         <td>
           <a href="/borrarUsuario/<%= usuario.id_usu %>">Borrado físico</a> /
           <a href="/borrarUsuario2/<%= usuario.id_usu %>">Borrado lógico</a>

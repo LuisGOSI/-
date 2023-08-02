@@ -6,6 +6,34 @@ var { Usuario } = require("../conexion");
 var { Admin } = require("../conexion");
 var { Inorganico } = require("../conexion");
 
+// Middleware para obtener el usuario de la sesión
+const obtenerUsuarioMiddleware = (req, res, next) => {
+  if (req.session.usuario) {
+    Usuario.findOne({ where: { usuario_usu: req.session.usuario } })
+      .then((user) => {
+        res.locals.user = user || null; // Establecer user en null si no se encuentra el usuario
+        next();
+      })
+      .catch((err) => {
+        console.log("No se pudo obtener el usuario" + err);
+        res.locals.user = null; // Establecer user en null en caso de error
+        next();
+      });
+  } else {
+    res.locals.user = null; // Establecer user en null si no hay usuario en la sesión
+    next();
+  }
+};
+
+// ...
+
+// Rutas
+// ...
+
+// Usar el middleware obtenerUsuarioMiddleware en todas las rutas
+rutas.use(obtenerUsuarioMiddleware);
+
+
 // Pagina de inicio ---------------------------------------------------------------------------
 rutas.get("/inicio/:usuario", (req, res) => {
   if (req.session.usuario) {
@@ -14,7 +42,15 @@ rutas.get("/inicio/:usuario", (req, res) => {
       order: [['createdAt', 'DESC']], 
     })
       .then((manualidades) => {
-        res.render("inicio", { usuario: req.session.usuario, manualidades });
+        Usuario.findOne({where: {usuario_usu:req.params.usuario}})
+        .then((user)=>{
+          console.log("hola");
+          console.log(user.id_usu);
+          res.render("inicio", { user: user, manualidades,  });
+        })
+      .catch((err)=>{
+        console.log("No se pudo obtener el usuario" + err);
+      }); 
       })
       .catch((err) => {
         console.log("Error al obtener las manualidades: " + err);
@@ -30,7 +66,7 @@ rutas.get("/inicio/:usuario", (req, res) => {
 // Pagina de organicos -------------------------------------------------------------------------
 rutas.get("/organicos", (req, res) => {
   if (req.session.usuario) {
-    res.render("pagina_organicos", { usuario: req.session.usuario });
+    res.render("pagina_organicos", { user: res.locals.user });
   } else {
     res.redirect("/");
   }
@@ -40,7 +76,7 @@ rutas.get("/organicos", (req, res) => {
 rutas.get("/inorganicos", (req, res) => {
   Inorganico.findAll()
     .then((inorganicos) => {
-      res.render("pagina_inorganicos", { inorganicos, usuario: req.session.usuario }); 
+      res.render("pagina_inorganicos", { inorganicos, user: res.locals.user }); 
     })
     .catch((err) => {
       console.log("Error al obtener las manualidades: " + err);
@@ -51,7 +87,7 @@ rutas.get("/inorganicos", (req, res) => {
 // Página de residuos medicos ------------------------------------------------------------------
 rutas.get("/residuos_medicos", (req, res) => {
   if (req.session.usuario) {
-    res.render("residuos_medicos", { usuario: req.session.usuario });
+    res.render("residuos_medicos", { user: res.locals.user });
   } else {
     res.redirect("/");
   }
@@ -61,7 +97,7 @@ rutas.get("/residuos_medicos", (req, res) => {
 // Pagina de residuos peligrosos ---------------------------------------------------------------
 rutas.get("/residuos_toxicos", (req, res) => {
   if (req.session.usuario) {
-    res.render("residuos_peligrosos", { usuario: req.session.usuario });
+    res.render("residuos_peligrosos", { user: res.locals.user });
   } else {
     res.redirect("/");
   }
@@ -70,7 +106,7 @@ rutas.get("/residuos_toxicos", (req, res) => {
 // Pagina de Composta con Compostador -------------------------------------------------------------------------
 rutas.get("/composta_compostador", (req, res) => {
   if (req.session.usuario) {
-    res.render("composta_compostador", { usuario: req.session.usuario });
+    res.render("composta_compostador", { user: res.locals.user });
   } else {
     res.redirect("/");
   }
@@ -80,7 +116,7 @@ rutas.get("/composta_compostador", (req, res) => {
 // Pagina sobre nosotros -----------------------------------------------------------------------
 rutas.get("/sobre_nosotros", (req, res) => {
   if (req.session.usuario) {
-    res.render("sobre_nosotros", { usuario: req.session.usuario });
+    res.render("sobre_nosotros", { user: res.locals.user });
   } else {
     res.redirect("/");
   }
@@ -91,7 +127,7 @@ rutas.get("/manualidad/:id_inor", (req, res) => {
   Inorganico.findByPk(req.params.id_inor)
     .then((manualidad) => {
       if (manualidad) {
-        res.render("manualidad", { manualidad, usuario: req.session.usuario });
+        res.render("manualidad", { manualidad, user: res.locals.user });
       } else {
         res.status(404).send("Manualidad no encontrada");
       }
@@ -226,7 +262,7 @@ rutas.post("/registrarUsuario", (req, res) => {
 // ruta registrar manualidad -------------------------------------------------------------------
 rutas.get("/registrar_manualidad", (req, res) => {
   if (req.session.usuario) {
-    res.render("registroManualidad", { usuario: req.session.usuario });
+    res.render("registroManualidad", { user: res.locals.user });
   } else {
     res.redirect("/");
   }
