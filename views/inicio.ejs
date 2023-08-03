@@ -2,7 +2,7 @@
 <%- include("templates/menu-desplegable.ejs") %>
 
 <div id="container-infoInicio">
-  <img src="/GreenWaste/css/media/fondoInicio.jpg" alt="" id="fondoInicio" />
+  <img src="/GreenWaste/css/media/fondoInicio.webp" alt="Fondo de pagina de inicio" id="fondoInicio" />
   <div id="cuadroInicioInfo">
     <div id="infoInicio-titulo">
       <h1>GreenWaste</h1>
@@ -22,7 +22,7 @@
     <% manualidades.forEach((manualidad) => { %>
       <div class="card">
         <a href="/manualidad/<%= manualidad.id_inor %>">
-          <img src="<%= manualidad.imagen_inor %>" />
+          <img src="<%= manualidad.imagen_inor %>" alt="Imagenes para las manualidades en la pagina de inicio"/>
           <div class="container-sugerencia-overlay">
             <p><%= manualidad.titulo_inor %></p>
           </div>
@@ -40,7 +40,7 @@
   <div class="Organicos">
     <a href="/organicos">
       <button type="submit" class="Org">
-        <img src="/GreenWaste/css/media/organicos.png" alt="Organicos" />
+        <img src="/GreenWaste/css/media/organicos.png" alt="Boton para ingresar a la pagina de Organicos" />
       </button>
     </a>
     <div class="descResi">Organicos</div>
@@ -48,7 +48,7 @@
   <div class="Inorganicos">
     <a href="/inorganicos">
       <button type="submit" class="Ing">
-        <img src="/GreenWaste/css/media/inorganicos.png" alt="Inorganicos" />
+        <img src="/GreenWaste/css/media/inorganicos.png" alt="Boton para ingresar a la pagina de Inorganicos" />
       </button>
     </a>
     <div class="descResi">Inorganicos</div>
@@ -57,7 +57,7 @@
   <div class="Biohazard">
     <a href="/residuos_toxicos">
       <button type="submit" class="Rec">
-        <img src="/GreenWaste/css/media/peligrosos.png" />
+        <img src="/GreenWaste/css/media/peligrosos.png" alt=" Boton para ingresar a la pagina de residuos Toxicos" />
       </button>
     </a>
     <div class="descResi">Peligrosos</div>
@@ -66,7 +66,7 @@
   <div class="Medicamentos">
     <a href="/residuos_medicos">
       <button type="submit" class="Med">
-        <img src="/GreenWaste/css/media/medicos.png" />
+        <img src="/GreenWaste/css/media/medicos.png" alt="Boton para ingresar a la pagina de residuos"/>
       </button>
     </a>
     <div class="descResi">Medicos</div>

@@ -29,25 +29,4 @@
   <input class="regis-input" type="submit" value="Registrar" />
 </form>
 
-<!-- <script>
-  function mostrarImagen() {
-    const fileInput = document.getElementById("imagen");
-    const imageElement = document.getElementById("imagenMostrada");
-  
-    const file = fileInput.files[0];
-    if (file) {
-      const reader = new FileReader();
-  
-      reader.onload = function (e) {
-        imageElement.src = e.target.result;
-        imageElement.style.display = "block";
-      };
-  
-      reader.readAsDataURL(file);
-    } else {
-      imageElement.src = "#"; // Si no se selecciona una imagen, se oculta la imagen mostrada
-      imageElement.style.display = "none";
-    }
-  }
-  </script> -->
 <%- include("templates/pie.ejs")%>

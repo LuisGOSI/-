@@ -44,8 +44,6 @@ rutas.get("/inicio/:usuario", (req, res) => {
       .then((manualidades) => {
         Usuario.findOne({where: {usuario_usu:req.params.usuario}})
         .then((user)=>{
-          console.log("hola");
-          console.log(user.id_usu);
           res.render("inicio", { user: user, manualidades,  });
         })
       .catch((err)=>{
