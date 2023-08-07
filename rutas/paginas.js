@@ -110,6 +110,24 @@ rutas.get("/composta_compostador", (req, res) => {
   }
 });
 
+// Pagina de Composta con cubeta -------------------------------------------------------------------------
+rutas.get("/composta_cubeta", (req, res) => {
+  if (req.session.usuario) {
+    res.render("composta_cubeta", { user: res.locals.user });
+  } else {
+    res.redirect("/");
+  }
+});
+
+// Pagina de Composta con fosa -------------------------------------------------------------------------
+rutas.get("/composta_fosa", (req, res) => {
+  if (req.session.usuario) {
+    res.render("composta_fosa", { user: res.locals.user });
+  } else {
+    res.redirect("/");
+  }
+});
+
 
 // Pagina sobre nosotros -----------------------------------------------------------------------
 rutas.get("/sobre_nosotros", (req, res) => {
@@ -164,24 +182,41 @@ rutas.get("/cerrarSesion", (req, res) => {
     res.redirect("/");
 });
 
-// Ruta VALIDACION SESION ----------------------------------------------------------------------
-
+// Ruta VALIDACION SESION
 rutas.post("/validar", (req, res) => {
   const usuario = req.body.usuario;
   const contraseña = req.body.password;
 
-  Usuario.findAll({ where: { usuario_usu: usuario, contra_usu: contraseña } })
-    .then((inicioS) => {
-      if (inicioS.length > 0) {
-        req.session.usuario = usuario;
-        res.redirect(`/inicio/${usuario}`); 
+  Usuario.findOne({ where: { usuario_usu: usuario } })
+    .then((user) => {
+      if (user) {
+        bcrypt.compare(contraseña, user.contra_usu, (err, result) => {
+          if (err) {
+            console.error("Error al comparar contraseñas:", err);
+            return res.status(500).send("Error al validar el usuario");
+          }
+
+          if (result) {
+            req.session.usuario = usuario;
+            res.redirect(`/inicio/${usuario}`);
+          } else {
+            const error = "Nombre de usuario o contraseña incorrecta";
+            console.log(error);
+            res.send(`<script>alert("${error}"); window.location.href="/";</script>`);
+          }
+        });
       } else {
         const error = "Nombre de usuario o contraseña incorrecta";
         console.log(error);
         res.send(`<script>alert("${error}"); window.location.href="/";</script>`);
       }
+    })
+    .catch((err) => {
+      console.log("Error al obtener el usuario: " + err);
+      res.status(500).send("Error al obtener el usuario");
     });
 });
+
 
 
 rutas.post("/validarAdmin", (req, res) => {
