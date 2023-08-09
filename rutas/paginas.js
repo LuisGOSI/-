@@ -5,6 +5,7 @@ const { where } = require("sequelize");
 var { Usuario } = require("../conexion");
 var { Admin } = require("../conexion");
 var { Inorganico } = require("../conexion");
+const saltRounds = 10; 
 
 // Middleware para obtener el usuario de la sesión
 const obtenerUsuarioMiddleware = (req, res, next) => {
@@ -367,14 +368,53 @@ rutas.get("/modificarUsuario/:id_usu", (req, res) => {
 
 // ruta de modificar usuario
 rutas.post("/modificarUsuario", (req, res) => {
-  Usuario.update(req.body, { where: { id_usu: req.body.id_usu } })
-    .then(() => {
-      res.redirect("/");
-    })
-    .catch((err) => {
-      console.log("Error: " + err);
+  const { id_usu, nombre_usu, usuario_usu, nueva_contra_usu } = req.body;
+
+  // Verificar si se proporcionó una nueva contraseña
+  if (nueva_contra_usu) {
+    // Encriptar la nueva contraseña antes de actualizarla
+    bcrypt.hash(nueva_contra_usu, saltRounds, (err, hash) => {
+      if (err) {
+        console.error("Error al encriptar la contraseña:", err);
+        return res.status(500).send("Error al modificar el usuario");
+      }
+
+      // Actualizar los datos del usuario, incluida la nueva contraseña encriptada
+      Usuario.update(
+        {
+          nombre_usu: nombre_usu,
+          usuario_usu: usuario_usu,
+          contra_usu: hash,
+        },
+        { where: { id_usu: id_usu } }
+      )
+        .then(() => {
+          res.redirect("/");
+        })
+        .catch((err) => {
+          console.log("Error: " + err);
+          res.redirect("/");
+        });
     });
+  } else {
+    // Si no se proporcionó una nueva contraseña, actualizar otros datos del usuario
+    Usuario.update(
+      {
+        nombre_usu: nombre_usu,
+        usuario_usu: usuario_usu,
+      },
+      { where: { id_usu: id_usu } }
+    )
+      .then(() => {
+        res.redirect("/");
+      })
+      .catch((err) => {
+        console.log("Error: " + err);
+        res.redirect("/");
+      });
+  }
 });
+
 
 // ruta de borrar fisicamente manualidades 
 rutas.get("/borrarManualidad/:id_inor", (req, res) => {
